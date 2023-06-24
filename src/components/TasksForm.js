@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useTasksContext } from "../hooks/useTasksContext";
 import { useAuthContext } from "../hooks/useAuthContext";
-
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const TaskForm = () => {
   const { dispatch } = useTasksContext();
   const { user } = useAuthContext();
@@ -40,7 +40,7 @@ const TaskForm = () => {
       priority,
     };
 
-    const response = await fetch("/api/tasks", {
+    const response = await fetch(`${BACKEND_URL}/api/tasks`, {
       method: "POST",
       body: JSON.stringify(task),
       headers: {

@@ -7,7 +7,7 @@ import "../style/MyTasks.css";
 import TaskDetails from "../components/TaskDetails";
 import TaskFrom from "../components/TasksForm";
 import NoTasksImage from "../assets/no-tasks-image.png"; // Import the image
-
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const MyTasks = () => {
   const { tasks, dispatch } = useTasksContext();
   const { user } = useAuthContext();
@@ -19,7 +19,7 @@ const MyTasks = () => {
 
   useEffect(() => {
     const fetchTasks = async () => {
-      const response = await fetch("/api/tasks", {
+      const response = await fetch(`${BACKEND_URL}/api/tasks`, {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },

@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faEyeSlash, faPen, faTrashCan, faCheck
 } from '@fortawesome/free-solid-svg-icons'
-
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const TaskDetails = ({ task }) => {
   const { dispatch } = useTasksContext();
   const { user } = useAuthContext();
@@ -22,7 +22,7 @@ const TaskDetails = ({ task }) => {
       return;
     }
 
-    const response = await fetch("/api/tasks/" + task._id, {
+    const response = await fetch(`${BACKEND_URL}/api/tasks/` + task._id, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${user.token}`,
@@ -43,7 +43,7 @@ const TaskDetails = ({ task }) => {
     };
   
     try {
-      const response = await fetch('/api/tasks/' + task._id, {
+      const response = await fetch(`${BACKEND_URL}/api/tasks/` + task._id, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -71,7 +71,7 @@ const TaskDetails = ({ task }) => {
     };
   
     try {
-      const response = await fetch('/api/tasks/' + task._id, {
+      const response = await fetch(`${BACKEND_URL}/api/tasks/` + task._id, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -97,7 +97,7 @@ const TaskDetails = ({ task }) => {
   };
 
   const handleSave = async () => {
-    const response = await fetch('/api/tasks/' + task._id, {
+    const response = await fetch(`${BACKEND_URL}/api/tasks/` + task._id, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
