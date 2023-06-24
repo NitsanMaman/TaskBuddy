@@ -12,12 +12,12 @@ export const useSignup = () => {
 
     const userData = { email, password, fullName};
 
-    const response = await fetch('/api/user/signup', {
+    const response = await fetch('https://taskbuddy-backend.onrender.com/api/user/signup', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(userData), // Pass the additional fields in the request body
     });
-    const json = await response.json();
+    const json = await response.json();    
 
     if (!response.ok) {
       setIsLoading(false);
