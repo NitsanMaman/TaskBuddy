@@ -4,7 +4,7 @@ import "../style/Calendar.css";
 import { useTasksContext } from "../hooks/useTasksContext";
 import { useAuthContext } from "../hooks/useAuthContext";
 import TaskDetails from "./TaskDetails";
-
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const Calendar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const { tasks, dispatch } = useTasksContext();
@@ -15,7 +15,7 @@ const Calendar = () => {
 
   useEffect(() => {
     const fetchTasks = async () => {
-      const response = await fetch("/api/tasks", {
+      const response = await fetch(`${BACKEND_URL}/api/tasks`, {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },
