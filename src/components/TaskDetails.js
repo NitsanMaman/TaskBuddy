@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faEyeSlash, faPen, faTrashAlt, faCheck
 } from '@fortawesome/free-solid-svg-icons';
-
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const TaskDetails = ({ task, onClose  }) => {
   const { dispatch } = useTasksContext();
   const { user } = useAuthContext();
@@ -23,7 +23,7 @@ const TaskDetails = ({ task, onClose  }) => {
       return;
     }
     try{
-      const response = await fetch("/api/tasks/" + task._id, {
+      const response = await fetch(`${BACKEND_URL}/api/tasks/` + task._id, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${user.token}`,
@@ -55,7 +55,7 @@ const TaskDetails = ({ task, onClose  }) => {
     };
 
     try {
-      const response = await fetch('/api/tasks/' + task._id, {
+      const response = await fetch(`${BACKEND_URL}/api/tasks/` + task._id, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -91,7 +91,7 @@ const TaskDetails = ({ task, onClose  }) => {
     };
 
     try {
-      const response = await fetch('/api/tasks/' + task._id, {
+      const response = await fetch(`${BACKEND_URL}/api/tasks/` + task._id, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -128,7 +128,7 @@ const TaskDetails = ({ task, onClose  }) => {
       return;
     }
 
-    const response = await fetch('/api/tasks/' + task._id, {
+    const response = await fetch(`${BACKEND_URL}/api/tasks/` + task._id, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
